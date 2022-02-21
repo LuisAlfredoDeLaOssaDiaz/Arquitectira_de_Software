@@ -6,7 +6,7 @@ from logic.document import Document
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 model = []
-dmodel = []
+model2 = []
 
 
 @app.route("/")
@@ -37,18 +37,18 @@ def people():
 
 @app.route('/libro')
 def libro():
-    ddata = [(
+    print(model2)
 
-        j.id_libro,
-        j.title,
-        j.authors,
-        j.pub_date,
-        j.edition,
-        j.num_pages,
-        j.document,   
-    ) for j in dmodel]
-    print(ddata)
-    return render_template('libro.html', value=ddata)
+    data2 = [(
+
+        i.id_libro,
+        i.title,
+        i.authors,
+        i.pub_date,
+        i.edition,
+        i.num_pages, 
+    ) for i in model2]
+    return render_template('libro.html', value=data2)
 
 
 @app.route('/document', methods=['GET'])
@@ -70,7 +70,7 @@ def document_detail():
         pub_date = pub_date,
         edition = edition,
         num_pages = num_pages)
-    model.append(Document)
+    model2.append(Document)
     return render_template('document_detail.html', value=document)
 
 
