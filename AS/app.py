@@ -6,6 +6,7 @@ from logic.document import Document
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 model = []
+dmodel = []
 
 
 @app.route("/")
@@ -33,6 +34,21 @@ def people():
     data = [(i.id_person, i.name, i.last_name) for i in model]
     print(data)
     return render_template('people.html', value=data)
+
+@app.route('/libro')
+def libro():
+    ddata = [(
+
+        j.id_libro,
+        j.title,
+        j.authors,
+        j.pub_date,
+        j.edition,
+        j.num_pages,
+        j.document,   
+    ) for j in dmodel]
+    print(ddata)
+    return render_template('libro.html', value=ddata)
 
 
 @app.route('/document', methods=['GET'])
