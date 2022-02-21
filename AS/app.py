@@ -70,7 +70,7 @@ def document_detail():
         pub_date = pub_date,
         edition = edition,
         num_pages = num_pages)
-    model2.append(Document)
+    model2.append(document)
     return render_template('document_detail.html', value=document)
 
 
