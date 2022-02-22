@@ -1,21 +1,13 @@
 class Document(object):
 
-    def __init__(self,
-    
-    id_libro : int ,
-    title : str = 'Title' ,
-    authors : str = 'Authors' ,
-    pub_date : str = 'PublicationDate' ,
-    edition : str = 'Edition' ,
-    num_pages : str = 'NumberPages' 
-    ):
-        
-        self._id_libro = id_libro ,
-        self._title = title ,
-        self._authors = authors ,
-        self._pub_date = pub_date ,
-        self._edition = edition ,
+    def __init__(self, id_libro : int = 0, title : str = 'Title', authors : str = 'Authors', pub_date : str = 'PublicationDate' ,edition : str = 'Edition' ,num_pages : int = 0):
+        self._id_libro = id_libro
+        self._title = title
+        self._authors = authors
+        self._pub_date = pub_date
+        self._edition = edition
         self._num_pages = num_pages 
+
 
     @property
     def id_libro(self) -> int:
@@ -58,24 +50,15 @@ class Document(object):
         self._edition = edition
 
     @property
-    def num_pages(self) -> str:
+    def num_pages(self) -> int:
         return self._num_pages
 
     @num_pages.setter
-    def num_pages(self, num_pages: str):
+    def num_pages(self, num_pages: int):
         self._num_pages = num_pages
 
-    
-
     def __str__(self):
-        return '( {0} , {1} , {2}, {3} , {4} , {5} )'.format(
-            self.id_libro,
-            self.title,
-            self.authors,
-            self.pub_date,
-            self.edition,
-            self.num_pages
-        )
+        return '( {0}, {1}, {2}, {3} , {4} , {5} )'.format(self.id_libro, self.title, self.authors, self.pub_date, self.edition, self.num_pages)
 
 if __name__ == '__main__':
     osso = Document(

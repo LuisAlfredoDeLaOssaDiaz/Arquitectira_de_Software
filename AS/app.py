@@ -37,17 +37,16 @@ def people():
 
 @app.route('/libro')
 def libro():
-    print(model2)
-
     data2 = [(
 
-        i.id_libro,
-        i.title,
-        i.authors,
-        i.pub_date,
-        i.edition,
-        i.num_pages, 
-    ) for i in model2]
+        j.id_libro,
+        j.title,
+        j.authors,
+        j.pub_date,
+        j.edition,
+        j.num_pages
+    ) for j in model2]
+    print(data2)
     return render_template('libro.html', value=data2)
 
 
@@ -63,16 +62,30 @@ def document_detail():
     pub_date = request.form['pub_date']
     edition = request.form['edition']
     num_pages = request.form['num_pages']
-    document = Document(
-        id_libro = id_libro,
-        title = title,
-        authors = authors,
-        pub_date = pub_date,
-        edition = edition,
-        num_pages = num_pages)
+    document = Document(id_libro = id_libro, title = title, authors = authors, pub_date = pub_date, edition = edition, num_pages = num_pages)
     model2.append(document)
+    print(document)
     return render_template('document_detail.html', value=document)
+
+@app.route("/person_delete/<id>")
+def delete_person(id):
+    for i in model:
+        if i.id_person == id:
+            temp = i
+            model.remove(i)
+
+    return "Eliminado la persona: " + temp.id_person + temp.name
+    
+
+@app.route("/document_delete/<id>")
+def delete_document(id):
+    for i in model2:
+        if i.id_libro == id:
+            temp = i
+            model2.remove(i)
+
+    return "Eliminado el documento: " + temp.id_libro + temp.title
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
